@@ -2,6 +2,8 @@ import ArticleDetailsClient from '@/components/articles/ArticleDetailsClient';
 import { getCategoriesWithPrisma, getAllThemes } from '@/lib/data';
 import { Article } from '@/interfaces';
 
+export const dynamic = 'force-dynamic';
+
 export default async function NewArticlePage() {
   const [categories, themes] = await Promise.all([
     getCategoriesWithPrisma(),
