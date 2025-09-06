@@ -1,0 +1,15 @@
+
+.dockerignore
+Dockerfile
+.env
+.env*.local
+.git
+.gitignore
+.next
+.vscode
+node_modules
+npm-debug.log*
+
+README.md
+
+package-lock.json

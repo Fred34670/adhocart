@@ -1,0 +1,27 @@
+import { PrismaClient } from '../generated/prisma'
+
+// Déclare une variable globale pour stocker l'instance de PrismaClient
+// Cela est nécessaire pour éviter de créer de nouvelles instances lors du rechargement à chaud en développement
+declare global {
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined;
+}
+
+// Crée l'instance de PrismaClient si elle n'existe pas, sinon réutilise l'instance globale existante
+// En production, `globalThis.prisma` sera toujours undefined au premier chargement, donc une nouvelle instance sera créée.
+// En développement, lors du rechargement à chaud, `globalThis.prisma` conservera l'instance précédente.
+
+export const prisma = globalThis.prisma || new PrismaClient({
+  datasources: {
+    db: {
+      url: process.env.DATABASE_URL,
+    },
+  },
+});
+
+// Si nous sommes en développement, assigne l'instance créée à la variable globale
+if (process.env.NODE_ENV !== 'production') {
+  globalThis.prisma = prisma;
+}
+
+// export default prisma; // Supprimez ou commentez cette ligne

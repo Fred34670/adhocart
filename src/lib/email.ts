@@ -1,0 +1,1 @@
+// Le service d'envoi d'e-mails a été désactivé.

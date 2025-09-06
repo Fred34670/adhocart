@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --popover: var(--background);
+  --popover-foreground: var(--foreground);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html, body {
+  background-color: #F5F5DC; /* Couleur de fond beige clair pour toute la page */
+  color: var(--foreground);
+}
+
+body {
+}
+
+
+
+/* Styles spécifiques pour la page de détail de l'article */
+.article-detail-page-wrapper .container {
+  /* Par exemple, si vous voulez un padding différent pour le conteneur principal sur cette page */
+  /* padding: 2rem; */
+}
+
+.article-detail-page-wrapper h1 {
+  /* Par exemple, pour changer la couleur des titres h1 uniquement sur la page de détail */
+  /* color: navy; */
+  font-size: 1.5rem;
+}
+
+.article-detail-page-wrapper .specific-element-class {
+  /* Pour cibler un élément avec une classe spécifique uniquement sur cette page */
+  /* font-weight: bold; */
+}
+
+/* Style de la navbar */
+/* fond */
+.navbar {
+  background-color: #800020;
+  color: #fff;
+  position:fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Breadcrumbs */
+.breadcrumb-background {
+  background-color: #5f5f09;
+}
+
+@layer utilities {
+  .text-4xl {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
+  }
+}
+
+th {
+}
+
+
