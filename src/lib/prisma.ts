@@ -7,6 +7,10 @@ declare global {
   var prisma: PrismaClient | undefined;
 }
 
+// Assurez-vous que DATABASE_URL est toujours défini pour le constructeur PrismaClient
+// Utilisez une URL de fallback si DATABASE_URL n'est pas défini (par exemple, pour les builds statiques sans DB)
+const databaseUrl = process.env.DATABASE_URL || 'postgresql://user:password@localhost:5432/dummy_db';
+
 // Crée l'instance de PrismaClient si elle n'existe pas, sinon réutilise l'instance globale existante
 // En production, `globalThis.prisma` sera toujours undefined au premier chargement, donc une nouvelle instance sera créée.
 // En développement, lors du rechargement à chaud, `globalThis.prisma` conservera l'instance précédente.
@@ -14,7 +18,7 @@ declare global {
 export const prisma = globalThis.prisma || new PrismaClient({
   datasources: {
     db: {
-      url: process.env.DATABASE_URL,
+      url: databaseUrl, // Utilise l'URL avec le fallback
     },
   },
 });
