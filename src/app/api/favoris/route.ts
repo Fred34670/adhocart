@@ -4,6 +4,8 @@ import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 // GET /api/favoris - Récupérer les favoris de l'utilisateur connecté ou le nombre de favoris
 export async function GET(request: Request) {
   const session = await getServerSession(authOptions);
@@ -117,7 +119,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: 'L\'ID de l\'article est invalide.' }, { status: 400 });
     }
 
-    // Vérifier si l'article existe
+    // Vérifier si l\'article existe
     const articleExists = await prisma.article.findUnique({
       where: { id: numericArticleId },
     });
@@ -158,7 +160,7 @@ export async function POST(request: Request) {
     return NextResponse.json(newFavori, { status: 201 });
   } catch (error) {
     console.error('Failed to add to favoris:', error);
-    // Gérer les erreurs spécifiques de Prisma, par exemple, si l'article_id n'existe pas
+    // Gérer les erreurs spécifiques de Prisma, par exemple, si l\'article_id n\'existe pas
     return NextResponse.json(
       { message: 'Erreur lors de l\'ajout aux favoris.' },
       { status: 500 }

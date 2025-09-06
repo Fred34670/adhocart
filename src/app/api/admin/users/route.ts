@@ -5,6 +5,8 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const session = await getServerSession(authOptions);
 
@@ -133,19 +135,19 @@ export async function DELETE(request: Request) {
   }
 
   try {
-    const { id } = await request.json(); // Ou utiliser searchParams si l'ID est passé dans l'URL
+    const { id } = await request.json(); // Ou utiliser searchParams si l\'ID est passé dans l\'URL
      if (!id) {
       return NextResponse.json({ message: 'L\'ID de l\'utilisateur est requis' }, { status: 400 });
     }
 
-    // Optionnel: Vérifier si l'utilisateur à supprimer n'est pas l'utilisateur actuellement connecté
+    // Optionnel: Vérifier si l\'utilisateur à supprimer n\'est pas l\'utilisateur actuellement connecté
     if (session.user.id === id) {
        return NextResponse.json({ message: 'Impossible de supprimer votre propre compte' }, { status: 400 });
     }
 
     const deletedUser = await prisma.utilisateur.delete({
       where: { id: parseInt(id, 10) },
-      select: { id: true, nom: true, email: true, role: true }, // Retourner les infos de l'utilisateur supprimé (sans mot de passe)
+      select: { id: true, nom: true, email: true, role: true }, // Retourner les infos de l\'utilisateur supprimé (sans mot de passe)
     });
     return NextResponse.json({
       ...deletedUser,

@@ -4,6 +4,8 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma'; // Assurez-vous que ce chemin est correct pour votre instance Prisma
 import { handleApiError, AuthorizationError, createErrorResponse } from '@/lib/errorHandler';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);

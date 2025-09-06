@@ -3,6 +3,8 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 interface Params {
   params: { id: string };
 }
