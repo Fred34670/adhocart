@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Card, CardHeader, CardContent, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
-export default function ResetPasswordPage() {
+function ResetPasswordPageContent() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -109,7 +109,7 @@ export default function ResetPasswordPage() {
                 {message}
               </p>
             )}
-            <Button type="submit" className="w-full" disabled={isLoading || isError || !token}>
+            <Button type="submit" className="w-full" disabled={isLoading || !token}>
               {isLoading ? 'Réinitialisation en cours...' : 'Réinitialiser le mot de passe'}
             </Button>
           </form>
@@ -121,5 +121,13 @@ export default function ResetPasswordPage() {
         </CardFooter>
       </Card>
     </div>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900"><p className="text-center text-gray-600">Chargement...</p></div>}>
+      <ResetPasswordPageContent />
+    </Suspense>
   );
 }

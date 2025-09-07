@@ -15,9 +15,16 @@ const nextConfig = {
         port: '',
         pathname: '/storage/v1/object/public/photos/**',
       },
-      // Ajoutez d'autres patterns si nécessaire
     ],
+  },
+  webpack: (config) => {
+    config.snapshot = { ...config.snapshot, managedPaths: [] };
+    config.watchOptions = {
+      ignored: ["**/Application Data/**", "**/AppData/**"],
+    };
+    return config;
   },
 };
 
 export default nextConfig;
+

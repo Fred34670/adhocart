@@ -1,7 +1,8 @@
 "use client";
-import React from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import FeaturedArticles from '@/components/home/FeaturedArticles';
 import { PrismaArticle } from '@/interfaces';
+import { useSearchParams } from 'next/navigation';
 
 // Fonction utilitaire pour récupérer les articles selon le terme de recherche
 async function fetchArticles(searchTerm: string): Promise<PrismaArticle[]> {
@@ -19,10 +20,7 @@ async function fetchArticles(searchTerm: string): Promise<PrismaArticle[]> {
   }
 }
 
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
-
-export default function SearchPage() {
+function SearchPageContent() {
   const searchParams = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
   const [articles, setArticles] = useState<PrismaArticle[]>([]);
@@ -67,5 +65,13 @@ export default function SearchPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#F5F5DC] flex items-center justify-center"><p className="text-center text-gray-600">Chargement de la recherche...</p></div>}>
+      <SearchPageContent />
+    </Suspense>
   );
 }
