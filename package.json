@@ -3,10 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "cross-env HOME='f:/Repository/Adhocart' USERPROFILE='f:/Repository/Adhocart' HOMEPROFILE='f:/Repository/Adhocart' next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "next build"
   },
   "dependencies": {
     "@auth/core": "0.34.2",
