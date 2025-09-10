@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# Keep Prisma query engines for deployment
+!/node_modules/.prisma/client/libquery_engine-*
+!/node_modules/@prisma/client/libquery_engine-*
