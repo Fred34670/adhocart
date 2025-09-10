@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cross-env HOME=F:/Repository/Adhocart USERPROFILE=F:/Repository/Adhocart next build",
+    "build": "next build",
+    "netlify:build": "npm install && npx prisma generate && npm run build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
