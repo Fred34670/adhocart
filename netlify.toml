@@ -1,15 +1,3 @@
-#
-#[build]
-#  command = "npm install && npx prisma generate && npm run build"
-#  publish = ".next"
-
-#[plugins]]
-#  package = "@netlify/plugin-nextjs"
-
-[#build.environment]
-#  NODE_VERSION = "18"
-
-
 [build]
   command = "npm run netlify:build"
   publish = ".next"
@@ -19,4 +7,3 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  PRISMA_CLI_BINARY_TARGETS = "native,debian-openssl-3.0.x"
