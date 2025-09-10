@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build"
+    "dev": "next dev",
+    "build": "cross-env HOME=F:/Repository/Adhocart USERPROFILE=F:/Repository/Adhocart next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@auth/core": "0.34.2",

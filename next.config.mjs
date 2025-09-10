@@ -20,7 +20,12 @@ const nextConfig = {
   webpack: (config) => {
     config.snapshot = { ...config.snapshot, managedPaths: [] };
     config.watchOptions = {
-      ignored: ["**/Application Data/**", "**/AppData/**"],
+      ignored: [
+        "**/Application Data/**",
+        "**/AppData/**",
+        "C:/Users/fred_/Application Data/**",
+        "C:/Users/fred_/AppData/**"
+      ],
     };
     return config;
   },
