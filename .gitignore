@@ -50,5 +50,3 @@ next-env.d.ts
 !/node_modules/@prisma/engines/libquery_engine-*
 !/node_modules/@prisma/engines/query_engine-*
 
-.prisma/
-node_modules/
