@@ -45,7 +45,7 @@ const AddItemForm: FC<AddItemFormProps> = ({ onAddItem, label }) => {
         type="button"
         onClick={handleAddNew}
         disabled={isAdding}
-        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
+        className="bg-[#E2E8F0] text-[#1a202c] font-bold py-2 px-4 rounded hover:bg-[#CBD5E0] disabled:opacity-50"
       >
         {isAdding ? '...' : '+'}
       </button>

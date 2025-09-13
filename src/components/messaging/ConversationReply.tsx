@@ -43,7 +43,7 @@ export default function ConversationReply({ conversationId }: ConversationReplyP
 
   return (
     <div className="mt-6 border-t pt-4">
-      <h2 className="text-lg font-semibold mb-2">Répondre</h2>
+      <h2 className="text-lg font-semibold mb-2 text-gray-900">Répondre</h2>
       <form onSubmit={handleSubmit}>
         <Textarea
           placeholder="Écrivez votre réponse ici..."
@@ -53,7 +53,7 @@ export default function ConversationReply({ conversationId }: ConversationReplyP
           onChange={(e) => setMessage(e.target.value)}
           disabled={isSubmitting}
         />
-        <Button type="submit" className="mt-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 rounded-full" disabled={isSubmitting}>
+        <Button type="submit" className="mt-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 rounded-md" disabled={isSubmitting}>
           {isSubmitting ? 'Envoi en cours...' : 'Envoyer la réponse'}
         </Button>
       </form>

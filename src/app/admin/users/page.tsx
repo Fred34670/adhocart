@@ -5,6 +5,12 @@ import React, { useEffect, useState } from 'react';
 import type { User } from '@/interfaces';
 import UserList from '@/components/admin/users/UserList';
 import UserForm from '@/components/admin/users/UserForm';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>([]);
@@ -113,13 +119,18 @@ export default function AdminUsersPage() {
 
       <UserList users={users} onEdit={handleEdit} onDelete={handleDelete} />
 
-      {isFormVisible && (
-        <UserForm
-          userToEdit={userToEdit}
-          onFormSubmit={handleFormSubmit}
-          onCancel={handleCancelForm}
-        />
-      )}
+      <Dialog open={isFormVisible} onOpenChange={(isOpen) => !isOpen && handleCancelForm()}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle className="text-gray-900">{userToEdit ? 'Modifier' : 'Ajouter'} un utilisateur</DialogTitle>
+          </DialogHeader>
+          <UserForm
+            userToEdit={userToEdit}
+            onFormSubmit={handleFormSubmit}
+            onCancel={handleCancelForm}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

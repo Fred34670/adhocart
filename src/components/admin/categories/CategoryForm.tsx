@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Category } from '@/types';
+import { TooltipRoot, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Info } from "lucide-react";
 
 interface CategoryFormProps {
   initialData?: Category | null;
@@ -28,28 +30,38 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ initialData, onSubmit, onCa
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
       <div>
-        <label className="block mb-1 font-semibold">Nom</label>
+        <label className="block mb-1 font-semibold text-gray-900">Nom</label>
         <input
           type="text"
-          className="border rounded px-3 py-2 w-full"
+          className="border rounded px-3 py-2 w-full text-gray-800"
           value={nom_categorie}
           onChange={e => setNomCategorie(e.target.value)}
           required
         />
       </div>
       <div>
-        <label className="block mb-1 font-semibold">Description</label>
+        <div className="flex items-center">
+          <label className="block mb-1 font-semibold text-gray-900">Description</label>
+          <TooltipRoot>
+            <TooltipTrigger asChild>
+              <Info className="h-4 w-4 ml-2 text-gray-500 cursor-pointer" />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Ce texte sera affiché sous le titre de la catégorie, sur l'image de fond.</p>
+            </TooltipContent>
+          </TooltipRoot>
+        </div>
         <textarea
-          className="border rounded px-3 py-2 w-full"
+          className="border rounded px-3 py-2 w-full text-gray-800"
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
       </div>
       <div>
-        <label className="block mb-1 font-semibold">Image de fond de la catégorie (URL)</label>
+        <label className="block mb-1 font-semibold text-gray-900">Image de fond de la catégorie (URL)</label>
         <input
           type="text"
-          className="border rounded px-3 py-2 w-full"
+          className="border rounded px-3 py-2 w-full text-gray-800"
           value={image_entete_url}
           onChange={e => setImageEnteteUrl(e.target.value)}
         />
@@ -57,7 +69,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ initialData, onSubmit, onCa
       <div className="flex space-x-2">
         <button
           type="submit"
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          className="bg-[#E2E8F0] text-[#1a202c] px-4 py-2 rounded hover:bg-[#CBD5E0]"
           disabled={loading}
         >{initialData ? "Enregistrer" : "Ajouter"}</button>
         <button

@@ -78,7 +78,7 @@ export async function POST(
 
         if (isAdmin) {
           // L'admin répond à l'utilisateur
-          const conversationUrl = `${process.env.NEXTAUTH_URL}/profile/messagerie/${conversationId}`;
+          const conversationUrl = `${process.env.NEXTAUTH_URL}/profile/messagerie/conversation/${conversationId}`;
           subject = `Nouvelle réponse concernant l'article "${updatedConversation.article.titre}"`;
           htmlBody = `
             <p>Bonjour ${updatedConversation.user?.prenom || updatedConversation.guestName || 'Utilisateur'},</p>

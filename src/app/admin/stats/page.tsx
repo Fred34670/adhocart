@@ -63,7 +63,7 @@ export default function AdminStatsPage() {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gray-800">Statistiques du Site</h1>
         <div className="flex gap-4">
-          <Link href="/admin/stats/ventes" className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+          <Link href="/admin/stats/ventes" className="px-4 py-2 bg-[#E2E8F0] text-[#1a202c] rounded-md hover:bg-[#CBD5E0] transition-colors">
             Voir les ventes
           </Link>
           <Link href="/admin/stats/acheteurs" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">

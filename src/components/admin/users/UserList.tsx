@@ -3,6 +3,15 @@
 
 import { useState } from 'react';
 import type { User } from '@/interfaces';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 interface UserListProps {
   users: User[];
@@ -32,28 +41,28 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
     <div className="mt-6">
       <h2 className="text-xl font-semibold mb-2">Liste des Utilisateurs</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white">
-          <thead>
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="bg-gray-50">
             <tr>
-              <th className="py-2 px-4 border-b text-left">Nom</th>
-              <th className="py-2 px-4 border-b text-center">Email</th>
-              <th className="py-2 px-4 border-b text-center">Téléphone</th>
-              <th className="py-2 px-4 border-b text-center">Rôle</th>
-              <th className="py-2 px-4 border-b text-center">Actions</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Téléphone</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rôle</th>
+              <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="bg-white divide-y divide-gray-200">
             {users.map((user) => (
               <tr key={user.id}>
-                <td className="py-2 px-4 border-b text-left">{user.name || 'N/A'}</td>
-                <td className="py-2 px-4 border-b text-center">{user.email}</td>
-                <td className="py-2 px-4 border-b text-center">{user.telephone || 'N/A'}</td>
-                <td className="py-2 px-4 border-b text-center">{user.role}</td>
-                <td className="py-2 px-4 border-b text-center">
-                  <button onClick={() => onEdit(user)} className="text-blue-600 hover:underline mr-2">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{`${user.prenom || ''} ${user.nom || ''}`.trim() || 'N/A'}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.telephone || 'N/A'}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.role}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <button onClick={() => onEdit(user)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
                     Modifier
                   </button>
-                  <button onClick={() => handleDeleteClick(user)} className="text-red-600 hover:underline">
+                  <button onClick={() => handleDeleteClick(user)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                     Supprimer
                   </button>
                 </td>
@@ -63,22 +72,24 @@ export default function UserList({ users, onEdit, onDelete }: UserListProps) {
         </table>
       </div>
 
-      {userToDelete && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-xl">
-            <h3 className="text-lg font-bold mb-4">Confirmer la suppression</h3>
-            <p>Êtes-vous sûr de vouloir supprimer l'utilisateur {userToDelete.name || userToDelete.email}?</p>
-            <div className="mt-4 flex justify-end">
-              <button onClick={cancelDelete} className="mr-2 bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded">
-                Annuler
-              </button>
-              <button onClick={confirmDelete} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                Supprimer
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <Dialog open={!!userToDelete} onOpenChange={(isOpen) => !isOpen && cancelDelete()}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle className="text-gray-900">Confirmer la suppression</DialogTitle>
+            <DialogDescription className="text-gray-700">
+              Êtes-vous sûr de vouloir supprimer l'utilisateur {userToDelete?.name || userToDelete?.email}?
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={cancelDelete}>
+              Annuler
+            </Button>
+            <Button variant="destructive" onClick={confirmDelete}>
+              Supprimer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

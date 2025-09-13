@@ -52,7 +52,7 @@ export default async function UserMessageriePage() {
                 <td className="px-6 py-4 text-sm text-gray-500 truncate" title={convo.messages[0]?.content}>{convo.messages[0]?.content}</td>
                 <td className="px-6 py-4 text-sm text-gray-500">{new Date(convo.updatedAt).toLocaleString('fr-FR')}</td>
                 <td className="px-2 py-4 text-right text-sm font-medium">
-                  <Link href={`/profile/messagerie/${convo.id}`} className="inline-block px-3 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                  <Link href={`/profile/messagerie/conversation/${convo.id}`} className="inline-block px-3 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
                     Voir
                   </Link>
                 </td>

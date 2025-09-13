@@ -25,10 +25,10 @@ const ArchivageForm: React.FC<ArchivageFormProps> = ({ initialData, onSubmit, on
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
       <div>
-        <label className="block mb-1 font-semibold">Nom</label>
+        <label className="block mb-1 font-semibold text-gray-900">Nom</label>
         <input
           type="text"
-          className="border rounded px-3 py-2 w-full"
+          className="border rounded px-3 py-2 w-full text-gray-800"
           value={nom_archivage}
           onChange={(e) => setNomArchivage(e.target.value)}
           required
@@ -37,7 +37,7 @@ const ArchivageForm: React.FC<ArchivageFormProps> = ({ initialData, onSubmit, on
       <div className="flex space-x-2">
         <button
           type="submit"
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          className="bg-[#E2E8F0] text-[#1a202c] px-4 py-2 rounded hover:bg-[#CBD5E0]"
           disabled={loading}
         >{initialData ? 'Enregistrer' : 'Ajouter'}</button>
         <button

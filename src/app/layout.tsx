@@ -1,9 +1,8 @@
 
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Roboto } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import AuthProvider from "./providers"; // Assurez-vous que ce chemin est correct
-import BreadcrumbsWrapper from '@/components/layout/BreadcrumbsWrapper';
 import { Navbar } from '@/components/layout/Navbar';
 import HomeFooter from '@/components/home/Footer';
 import GlobalModals from '@/components/layout/GlobalModals';
@@ -11,12 +10,23 @@ import GlobalModals from '@/components/layout/GlobalModals';
 import { getCategoriesWithPrisma } from '@/lib/data';
 
 
-const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-playfair' });
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ['400', '700'],
+const inter = localFont({
+  src: "../fonts/inter.ttf",
+  variable: '--font-inter',
+  fallback: ['sans-serif'],
+});
+
+const playfair = localFont({
+  src: "../fonts/playfair-display.ttf",
+  variable: '--font-playfair',
+  fallback: ['serif'],
+});
+
+const roboto = localFont({
+  src: "../fonts/roboto.ttf",
   variable: '--font-roboto',
+  weight: '400 700',
+  fallback: ['sans-serif'],
 });
 
 export default async function RootLayout({
@@ -43,7 +53,6 @@ export default async function RootLayout({
         <AuthProvider>
           <Navbar categories={categories} />
           <div className="min-h-screen">
-            <BreadcrumbsWrapper />
             {children}
           </div>
           <HomeFooter />

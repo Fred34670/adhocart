@@ -4,6 +4,7 @@ import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import { Input } from '@/components/ui/input';
+import BreadcrumbsWrapper from '@/components/layout/BreadcrumbsWrapper';
 import { User, Heart, Mail } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import AuthModal from '@/components/auth/AuthModal';
@@ -117,6 +118,7 @@ export const Navbar: React.FC<NavbarProps> = ({ categories }) => {
 
   return (
     <>
+      <BreadcrumbsWrapper />
       <nav className="navbar">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Desktop Navigation */}

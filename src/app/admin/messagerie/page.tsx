@@ -21,7 +21,10 @@ type ConversationWithDetails = {
 
 async function getConversations(): Promise<ConversationWithDetails[]> {
   const conversations = await prisma.conversation.findMany({
-    include: {
+    select: {
+      id: true,
+      updatedAt: true,
+      isReadByAdmin: true,
       article: {
         select: {
           titre: true,
@@ -34,6 +37,7 @@ async function getConversations(): Promise<ConversationWithDetails[]> {
           email: true,
         },
       },
+      guestName: true,
       messages: {
         orderBy: {
           createdAt: 'desc',

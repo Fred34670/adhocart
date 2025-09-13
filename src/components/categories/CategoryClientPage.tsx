@@ -17,6 +17,7 @@ export default function CategoryClientPage({ slug }: CategoryClientPageProps) {
   const [articles, setArticles] = useState<any[]>([]);
   const [categoryName, setCategoryName] = useState('');
   const [categoryHeaderImage, setCategoryHeaderImage] = useState<string | null>(null);
+  const [categoryDescription, setCategoryDescription] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<SortOrder>('alphabetical');
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -57,6 +58,7 @@ export default function CategoryClientPage({ slug }: CategoryClientPageProps) {
         })));
         setTotalArticles(data.totalCount);
         setCategoryHeaderImage(data.image_entete_url);
+        setCategoryDescription(data.description);
       } catch (error) {
         console.error('Error fetching articles:', error);
       } finally {
@@ -90,19 +92,9 @@ export default function CategoryClientPage({ slug }: CategoryClientPageProps) {
             >
               <div className="absolute inset-0 bg-black opacity-50 rounded-lg"></div>
               <h1 className="relative text-4xl font-bold text-center font-playfair text-white">{categoryName}</h1>
-              {slug === 'livres' && (
+              {categoryDescription && (
                 <p className="relative text-lg text-center text-white mt-4 max-w-2xl mx-auto">
-                  Découvrez notre collection exceptionnelle de livres rares, éditions limitées et ouvrages anciens pour les passionnés de littérature. Plongez dans des mondes imaginaires, apprenez de nouvelles choses ou revivez l'histoire à travers nos pages.
-                </p>
-              )}
-              {slug === 'arts-graphiques' && (
-                <p className="relative text-lg text-center text-white mt-4 max-w-2xl mx-auto">
-                  Explorez notre sélection d'arts graphiques, incluant des estampes, des affiches originales et des dessins d'artistes renommés. Une collection unique pour les amateurs d'art et les collectionneurs.
-                </p>
-              )}
-              {slug === 'vieux-papiers' && (
-                <p className="relative text-lg text-center text-white mt-4 max-w-2xl mx-auto">
-                  Parcourez nos trésors de vieux papiers : manuscrits, lettres autographes, cartes anciennes et documents historiques. Chaque pièce est un fragment d'histoire à découvrir.
+                  {categoryDescription}
                 </p>
               )}
             </div>

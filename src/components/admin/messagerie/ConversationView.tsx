@@ -37,8 +37,8 @@ export default function ConversationView({ conversation }: { conversation: any }
       </div>
       
       <div className="bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-2xl font-bold mb-2">Conversation</h1>
-        <div className="mb-4 text-sm text-gray-600">
+        <h1 className="text-2xl font-bold mb-2 text-gray-900">Conversation</h1>
+        <div className="mb-4 text-sm text-gray-900">
           <p><strong>Article:</strong> <Link href={`/articles/${conversation.article.id}`} className="text-indigo-600">{conversation.article.titre}</Link></p>
           <p><strong>Utilisateur:</strong> {conversation.user ? `${conversation.user.prenom || ''} ${conversation.user.nom || ''}`.trim() || conversation.user.email : `${conversation.guestName} (${conversation.guestEmail})`}</p>
         </div>
@@ -46,9 +46,9 @@ export default function ConversationView({ conversation }: { conversation: any }
         <div className="space-y-4 border-t pt-4 mt-4">
           {conversation.messages.map((message: any) => (
             <div key={message.id} className={`flex ${message.senderIsAdmin ? 'justify-end' : 'justify-start'}`}>
-              <div className={`p-3 rounded-lg max-w-lg ${message.senderIsAdmin ? 'bg-indigo-500 text-white' : 'bg-gray-200 text-gray-800'}`}>
+              <div className={`p-3 rounded-lg max-w-lg ${message.senderIsAdmin ? 'bg-indigo-500 text-white' : 'bg-gray-300 text-gray-900'}`}>
                 <p>{message.content}</p>
-                <p className="text-xs opacity-75 mt-1 text-right">{new Date(message.createdAt).toLocaleString('fr-FR')}</p>
+                <p className={`text-xs mt-1 text-right ${message.senderIsAdmin ? 'text-indigo-100' : 'text-gray-500'}`}>{new Date(message.createdAt).toLocaleString('fr-FR')}</p>
               </div>
             </div>
           ))}

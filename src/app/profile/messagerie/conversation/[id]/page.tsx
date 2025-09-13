@@ -5,6 +5,8 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import UserConversationReply from '@/components/messaging/UserConversationReply';
 
+export const dynamic = 'force-dynamic';
+
 async function getConversationForUser(id: number, userId: number) {
   const conversation = await prisma.conversation.findFirst({
     where: { id, userId },
@@ -48,7 +50,7 @@ export default async function UserConversationPage({ params }: { params: { id: s
       <Link href="/profile/messagerie" className="text-indigo-600 hover:text-indigo-900 mb-4 inline-block">&larr; Retour à mes messages</Link>
       
       <div className="bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-2xl font-bold mb-2">Conversation sur : {conversation.article.titre}</h1>
+        <h1 className="text-2xl font-bold mb-2 text-gray-900">Conversation sur : {conversation.article.titre}</h1>
         
         <div className="space-y-4 border-t pt-4 mt-4">
           {conversation.messages.map(message => (

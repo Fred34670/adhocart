@@ -40,7 +40,7 @@ const MergeFavoritesModal: React.FC<MergeFavoritesModalProps> = ({ isOpen, onClo
         <div className="flex justify-center space-x-4">
           <button
             onClick={onConfirm}
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-[#E2E8F0] text-[#1a202c] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Oui, ajouter
           </button>

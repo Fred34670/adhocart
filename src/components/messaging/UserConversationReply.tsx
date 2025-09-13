@@ -44,7 +44,7 @@ export default function UserConversationReply({ conversationId }: UserConversati
   return (
     <form onSubmit={handleSubmit} className="mt-6">
       <Textarea
-        className="w-full p-2"
+        className="w-full bg-white px-3 py-2"
         rows={4}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
@@ -53,7 +53,7 @@ export default function UserConversationReply({ conversationId }: UserConversati
       />
       <Button
         type="submit"
-        className="mt-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 rounded-full"
+        className="mt-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 rounded-md"
         disabled={isSubmitting}
       >
         {isSubmitting ? 'Envoi en cours...' : 'Envoyer la réponse'}

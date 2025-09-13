@@ -120,6 +120,7 @@ export async function GET(request: NextRequest) {
 
     let categoryName = null;
     let image_entete_url = null;
+    let description = null;
     if (category) {
       const categoryData = await prisma.categorie.findFirst({
         where: {
@@ -131,10 +132,12 @@ export async function GET(request: NextRequest) {
         select: {
           nom_categorie: true,
           image_entete_url: true,
+          description: true,
         },
       });
       categoryName = categoryData?.nom_categorie;
       image_entete_url = categoryData?.image_entete_url;
+      description = categoryData?.description;
     }
 
     const formattedArticles = articles.map(article => ({
@@ -156,6 +159,7 @@ export async function GET(request: NextRequest) {
       totalCount,
       categoryName,
       image_entete_url,
+      description,
     });
 
   } catch (error) {

@@ -3,6 +3,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Category, Theme, Archivage, EditionPapier } from '@/types';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import CategoryList from '@/components/admin/categories/CategoryList';
 import CategoryForm from '@/components/admin/categories/CategoryForm';
 import ThemeList from '@/components/admin/themes/ThemeList';
@@ -132,21 +139,29 @@ const CategoriesManager = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto py-8">
-      <h2 className="text-xl font-bold mb-6 text-gray-800">Gestion des catégories</h2>
+    <TooltipProvider>
+      <div>
+        <h2 className="text-xl font-bold mb-6 text-gray-800">Gestion des catégories</h2>
       {error && <div className="bg-red-100 text-red-700 px-4 py-2 mb-4 rounded">{error}</div>}
       {success && <div className="bg-green-100 text-green-700 px-4 py-2 mb-4 rounded">{success}</div>}
-      {showForm ? (
-        <CategoryForm
-          initialData={editCategory}
-          onSubmit={handleFormSubmit}
-          onCancel={() => setShowForm(false)}
-          loading={loading}
-        />
-      ) : (
+      <Dialog open={showForm} onOpenChange={(isOpen) => !isOpen && setShowForm(false)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-gray-900">{editCategory ? 'Modifier' : 'Ajouter'} une catégorie</DialogTitle>
+          </DialogHeader>
+          <CategoryForm
+            initialData={editCategory}
+            onSubmit={handleFormSubmit}
+            onCancel={() => setShowForm(false)}
+            loading={loading}
+          />
+        </DialogContent>
+      </Dialog>
+
+      {!showForm && (
         <>
           <button
-            className="mb-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            className="mb-4 bg-[#E2E8F0] text-[#1a202c] px-4 py-2 rounded hover:bg-[#CBD5E0]"
             onClick={handleAdd}
           >Ajouter une catégorie</button>
           {loading ? (
@@ -160,7 +175,8 @@ const CategoriesManager = () => {
           )}
         </>
       )}
-    </div>
+      </div>
+    </TooltipProvider>
   );
 }
 
@@ -215,7 +231,9 @@ const AdminAutresRubriquesPage = () => {
         </nav>
       </div>
       <div className="mt-8">
-        {activeTab === 'categories' && <CategoriesManager />}
+        {activeTab === 'categories' &&
+          <CategoriesManager />
+        }
         {activeTab === 'themes' && <ThemesManager />}
         {activeTab === 'archivages' && <ArchivagesManager />}
         {activeTab === 'editions-papier' && <EditionsPapierManager />}
@@ -335,21 +353,28 @@ const ThemesManager = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto py-8">
+    <div>
       <h2 className="text-xl font-bold mb-6 text-gray-800">Gestion des thèmes</h2>
       {error && <div className="bg-red-100 text-red-700 px-4 py-2 mb-4 rounded">{error}</div>}
       {success && <div className="bg-green-100 text-green-700 px-4 py-2 mb-4 rounded">{success}</div>}
-      {showForm ? (
-        <ThemeForm
-          initialData={editTheme}
-          onSubmit={handleFormSubmit}
-          onCancel={() => setShowForm(false)}
-          loading={loading}
-        />
-      ) : (
+      <Dialog open={showForm} onOpenChange={(isOpen) => !isOpen && setShowForm(false)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-gray-900">{editTheme ? 'Modifier' : 'Ajouter'} un thème</DialogTitle>
+          </DialogHeader>
+          <ThemeForm
+            initialData={editTheme}
+            onSubmit={handleFormSubmit}
+            onCancel={() => setShowForm(false)}
+            loading={loading}
+          />
+        </DialogContent>
+      </Dialog>
+
+      {!showForm && (
         <>
           <button
-            className="mb-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            className="mb-4 bg-[#E2E8F0] text-[#1a202c] px-4 py-2 rounded hover:bg-[#CBD5E0]"
             onClick={handleAdd}
           >Ajouter un thème</button>
           {loading ? (
@@ -478,21 +503,28 @@ const ArchivagesManager = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto py-8">
+    <div>
       <h2 className="text-xl font-bold mb-6 text-gray-800">Gestion des archivages</h2>
       {error && <div className="bg-red-100 text-red-700 px-4 py-2 mb-4 rounded">{error}</div>}
       {success && <div className="bg-green-100 text-green-700 px-4 py-2 mb-4 rounded">{success}</div>}
-      {showForm ? (
-        <ArchivageForm
-          initialData={editArchivage}
-          onSubmit={handleFormSubmit}
-          onCancel={() => setShowForm(false)}
-          loading={loading}
-        />
-      ) : (
+      <Dialog open={showForm} onOpenChange={(isOpen) => !isOpen && setShowForm(false)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-gray-900">{editArchivage ? 'Modifier' : 'Ajouter'} un archivage</DialogTitle>
+          </DialogHeader>
+          <ArchivageForm
+            initialData={editArchivage}
+            onSubmit={handleFormSubmit}
+            onCancel={() => setShowForm(false)}
+            loading={loading}
+          />
+        </DialogContent>
+      </Dialog>
+
+      {!showForm && (
         <>
           <button
-            className="mb-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            className="mb-4 bg-[#E2E8F0] text-[#1a202c] px-4 py-2 rounded hover:bg-[#CBD5E0]"
             onClick={handleAdd}
           >Ajouter un archivage</button>
           {loading ? (
@@ -621,21 +653,28 @@ const EditionsPapierManager = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto py-8">
+    <div>
       <h2 className="text-xl font-bold mb-6 text-gray-800">Gestion des éditions papier</h2>
       {error && <div className="bg-red-100 text-red-700 px-4 py-2 mb-4 rounded">{error}</div>}
       {success && <div className="bg-green-100 text-green-700 px-4 py-2 mb-4 rounded">{success}</div>}
-      {showForm ? (
-        <EditionPapierForm
-          initialData={editEditionPapier}
-          onSubmit={handleFormSubmit}
-          onCancel={() => setShowForm(false)}
-          loading={loading}
-        />
-      ) : (
+      <Dialog open={showForm} onOpenChange={(isOpen) => !isOpen && setShowForm(false)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-gray-900">{editEditionPapier ? 'Modifier' : 'Ajouter'} une édition papier</DialogTitle>
+          </DialogHeader>
+          <EditionPapierForm
+            initialData={editEditionPapier}
+            onSubmit={handleFormSubmit}
+            onCancel={() => setShowForm(false)}
+            loading={loading}
+          />
+        </DialogContent>
+      </Dialog>
+
+      {!showForm && (
         <>
           <button
-            className="mb-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            className="mb-4 bg-[#E2E8F0] text-[#1a202c] px-4 py-2 rounded hover:bg-[#CBD5E0]"
             onClick={handleAdd}
           >Ajouter une édition papier</button>
           {loading ? (

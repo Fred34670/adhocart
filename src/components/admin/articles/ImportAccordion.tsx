@@ -232,7 +232,7 @@ export default function ImportAccordion() {
                         </div>
                         ))}
                     </div>
-                    <Button onClick={handleFinalImport} className="mt-6 bg-green-600 hover:bg-green-700" disabled={isImporting}>
+                    <Button onClick={handleFinalImport} className="mt-6 bg-[#E2E8F0] text-[#1a202c] hover:bg-[#CBD5E0]" disabled={isImporting}>
                         {isImporting ? 'Importation en cours...' : 'Confirmer et Importer'}
                     </Button>
                     {importResult && <p className="text-green-600 text-sm mt-4">{importResult}</p>}

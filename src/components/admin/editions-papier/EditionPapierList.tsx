@@ -10,7 +10,7 @@ interface EditionPapierListProps {
 
 const EditionPapierList: React.FC<EditionPapierListProps> = ({ editionsPapier, onEdit, onDelete }) => {
   return (
-    <table className="min-w-full border border-gray-300 mx-auto">
+    <table className="w-auto border border-gray-300">
       <thead>
         <tr className="bg-gray-100">
           <th className="px-4 py-2 border-b border-r border-gray-300 text-gray-700">Nom</th>

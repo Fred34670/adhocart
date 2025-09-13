@@ -1,6 +1,8 @@
 import React from "react";
 import { getImagePath } from "@/components/home/Categories";
 import { Category } from '@/types';
+import { TooltipRoot, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Info } from "lucide-react";
 
 interface CategoryListProps {
   categories: Category[];
@@ -10,12 +12,24 @@ interface CategoryListProps {
 
 const CategoryList: React.FC<CategoryListProps> = ({ categories, onEdit, onDelete }) => {
   return (
-    <table className="min-w-full border border-gray-300 mx-auto">
+    <table className="w-auto border border-gray-300">
       <thead>
         <tr className="bg-gray-100">
           <th className="px-4 py-2 border-b border-r border-gray-300 text-gray-700">Bouton catégorie</th>
           <th className="px-4 py-2 border-b border-r border-gray-300 text-gray-700">Nom</th>
-          <th className="px-4 py-2 border-b border-r border-gray-300 text-gray-700">Description</th>
+          <th className="px-4 py-2 border-b border-r border-gray-300 text-gray-700">
+            <div className="flex items-center justify-center">
+              <span>Description</span>
+              <TooltipRoot>
+                <TooltipTrigger asChild>
+                  <Info className="h-4 w-4 ml-2 text-gray-500 cursor-pointer" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Ce texte sera affiché sous le titre de la catégorie, sur l'image de fond.</p>
+                </TooltipContent>
+              </TooltipRoot>
+            </div>
+          </th>
           <th className="px-4 py-2 border-b border-r border-gray-300 text-gray-700">Image de fond de la catégorie</th>
           <th className="px-4 py-2 border-b border-gray-300 text-gray-700">Actions</th>
         </tr>
